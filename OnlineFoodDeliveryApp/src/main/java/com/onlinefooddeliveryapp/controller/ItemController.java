@@ -43,7 +43,7 @@ public class ItemController {
 	
 	@Path("/removeitem/{itemid}")
 	@DELETE
-	public String deleteItem(@PathParam("itemid") String itemid){
+	public String removeItem(@PathParam("itemid") String itemid){
 		return itemService.removeItem(itemid);
 	}
 	

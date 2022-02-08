@@ -1,11 +1,11 @@
-package com.onlinefooddeliveryapp.service;
+package com.onlinefooddeliveryapp.repository;
 
 import java.util.List;
 
 import com.onlinefooddeliveryapp.entity.Order;
 import com.onlinefooddeliveryapp.repository.OrderRepository;
 
-public class OrderService {
+public class OrderRepository {
 	OrderRepository orderRepository = new OrderRepository();
 	public List<Order> getAllOrder() {
 			

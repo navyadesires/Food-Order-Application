@@ -37,6 +37,7 @@ private static SessionFactory sessionFactory;
 				
 				cfg.setProperties(settings);
 				cfg.addAnnotatedClass(Item.class);
+				cfg.addAnnotatedClass(Order.class);
 //				cfg.addAnnotatedClass(Flight.class);
 //				cfg.addAnnotatedClass(Person.class);
 //				cfg.addAnnotatedClass(Passenger.class);
