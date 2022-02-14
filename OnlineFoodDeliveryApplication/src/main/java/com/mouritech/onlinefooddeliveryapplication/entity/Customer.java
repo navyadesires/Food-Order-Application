@@ -1,4 +1,4 @@
-/*package com.mouritech.onlinefooddeliveryapplication.model;
+package com.mouritech.onlinefooddeliveryapplication.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,27 +8,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="restaurants")
-public class Restaurant {
+@Table(name="customers")
+public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "restaurantId", nullable = false)
+	@Column(name = "customerId", nullable = false)
 	private Long customerId;
 	
-	@Column(name="restaurantName", nullable = false)
+	@Column(name="first_name", nullable = false)
 	private String firstName;
 	
-	@Column(name = "address", nullable = false)
+	@Column(name = "last_name", nullable = false)
 	private String lastName;
 	
-	@Column(name = "itemlist", nullable = false)
+	@Column(name = "age", nullable = false)
 	private int age;
 	
-	@Column(name = "managerName", nullable = false)
+	@Column(name = "email", nullable = false)
 	private String email;
 	
-	@Column(name = "ContactName")
+	@Column(name = "password1")
 	private String password1;
 	
 	@Column(name = "gender", nullable = false)
@@ -201,4 +201,4 @@ public class Restaurant {
 				+ "]";
 	}
 
-} */
+}

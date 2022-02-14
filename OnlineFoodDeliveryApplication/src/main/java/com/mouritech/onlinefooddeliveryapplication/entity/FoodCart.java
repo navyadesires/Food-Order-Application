@@ -1,3 +1,4 @@
+package com.mouritech.onlinefooddeliveryapplication.entity;
 /*package com.mouritech.onlinefooddeliveryapplication.model;
 
 import javax.persistence.CascadeType;

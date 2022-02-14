@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.mouritech.onlinefooddeliveryapplication.entity.Customer;
 import com.mouritech.onlinefooddeliveryapplication.exception.ResourceNotFoundException;
-import com.mouritech.onlinefooddeliveryapplication.model.Customer;
 
 public interface CustomerService {
 

@@ -1,10 +1,8 @@
-/* package com.mouritech.onlinefooddeliveryapplication.control;
-
-import java.util.List;
+package com.mouritech.onlinefooddeliveryapplication.control;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,66 +12,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mouritech.onlinefooddeliveryapplication.exception.ResourceNotFoundException;
-
+import com.mouritech.onlinefooddeliveryapplication.entity.Restaurant;
+import com.mouritech.onlinefooddeliveryapplication.service.RestaurantService;
 
 @CrossOrigin(origins = "http://localhost:4200")
-@RestController 
+@RestController
 @RequestMapping("/api/v1")
 public class RestaurantController {
-	
 	@Autowired
-	private RestaurantController customerRepository;
+	private RestaurantService restaurantService;
 	
-	//get all customers
-	@GetMapping("/customers")
-	public List<Restaurant> getCustomerList()
+	@PostMapping("/addrestaurantinfo")
+	public ResponseEntity<?>addRestaurantInformation(@RequestBody Restaurant restaurant)
 	{
-		return customerRepository.findAll();
+		restaurantService.addRestaurantInformation(restaurant);
+		
+		return ResponseEntity.ok().body("all restaurant information inserted");
+		
+		
 	}
 	
-	//add new customer
-	@PostMapping("/customers")
-	public Restaurant createCustomer(@Validated @RequestBody Customer customer)
-	{
-		return customerRepository.save(customer);
+	@PostMapping("/getrestaurantbyidandpassword/{restaurantName}/{restaurantPassword}")
+	public ResponseEntity<?> findRestaurantByNameAndPassword(@PathVariable(value = "restaurantName") String restaurantName,
+			@PathVariable(value ="restaurantPassword") String restaurantPassword){
+		
+		boolean result = restaurantService.findRestaurantByNameAndPassword(restaurantName,restaurantPassword);
+		if(result==true) {
+			return ResponseEntity.ok().body("login successful");
+		}
+	
+		else {
+			 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("resourse not found please sign in first");
+			
+		}
+		
 	}
-	//get a customer by id
-		@GetMapping("/customers/{id}")
-	    public ResponseEntity<Customer> getCustomerById(@PathVariable(value = "id") Long customerId)
-	        throws ResourceNotFoundException {
-	        Customer customer = customerRepository.findById(customerId)
-	          .orElseThrow(() -> new ResourceNotFoundException("Customer not found for this id :: " + customerId));
-	        return ResponseEntity.ok().body(customer);
-	    }
+	@PutMapping("/updaterestaurantinfobyname")
+	public ResponseEntity<?>updaterestaurantinfobyname(@RequestBody Restaurant restaurant){
 		
-		//get a customer by username and email
-		@GetMapping("/customers/{username}/{email}")
-		public ResponseEntity<Customer> getCustomerByEmailAndPassword(@PathVariable(value = "email") String email,
-				@PathVariable(value ="password") String password) throws ResourceNotFoundException {
-		       // Customer customer = customerRepository.findByEmailAndPassword(email, password)
-		       //   .orElseThrow(() -> new ResourceNotFoundException("Customer not found "));
-		        return ResponseEntity.ok().body(null);
-		    }
-		
-		//update a customer
-		@PutMapping("/customers/{id}")
-	    public ResponseEntity<Customer> updateCustomer(@PathVariable(value = "id") Long customerId,
-	         @Validated @RequestBody Customer customerDetails) throws ResourceNotFoundException {
-	        Customer customer = customerRepository.findById(customerId)
-	        .orElseThrow(() -> new ResourceNotFoundException("Customer not found for this id :: " + customerId));
+		ResponseEntity<?> result = restaurantService.updaterestaurantinfobyname(restaurant);
+		return result;
+	}
+	
 
-	        customer.setEmail(customerDetails.getEmail());
-	        customer.setLastName(customerDetails.getLastName());
-	        customer.setFirstName(customerDetails.getFirstName());
-	        customer.setAddress(customerDetails.getAddress());
-	        customer.setCity(customerDetails.getCity());
-	        customer.setCountry(customerDetails.getCountry());
-	        customer.setPincode(customerDetails.getPincode());
-	        
-	        final Customer updatedCustomer = customerRepository.save(customer);
-	        return ResponseEntity.ok(updatedCustomer);
-	    }
+
 }
-
-*/

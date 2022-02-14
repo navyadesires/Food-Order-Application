@@ -1,4 +1,4 @@
-package com.mouritech.onlinefooddeliveryapplication.model;
+package com.mouritech.onlinefooddeliveryapplication.entity;
 
 import java.time.LocalDateTime;
 import java.util.Date;

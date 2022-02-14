@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mouritech.onlinefooddeliveryapplication.model.Order;
+import com.mouritech.onlinefooddeliveryapplication.entity.Order;
 import com.mouritech.onlinefooddeliveryapplication.repository.OrderRepository;
 
 import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
