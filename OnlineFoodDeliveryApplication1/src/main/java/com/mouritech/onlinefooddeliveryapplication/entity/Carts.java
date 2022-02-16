@@ -1,4 +1,4 @@
-package com.mouritech.onlinefooddeliveryapplication.entity;
+/*package com.mouritech.onlinefooddeliveryapplication.entity;
 
 import java.util.List;
 
@@ -67,4 +67,4 @@ public class Carts {
 	}
 	
 	
-}
+}*/

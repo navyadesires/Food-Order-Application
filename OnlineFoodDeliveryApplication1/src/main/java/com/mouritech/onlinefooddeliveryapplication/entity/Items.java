@@ -26,6 +26,8 @@ public class Items {
 		
 		private int itemQuantity;
 		
+	
+		
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name = "restaurant_id")
 		private Restaurant restaurant;

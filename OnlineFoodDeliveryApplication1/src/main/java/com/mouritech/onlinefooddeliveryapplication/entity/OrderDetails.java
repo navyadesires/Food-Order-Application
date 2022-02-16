@@ -1,4 +1,4 @@
-package com.mouritech.onlinefooddeliveryapplication.entity;
+/*package com.mouritech.onlinefooddeliveryapplication.entity;
 
 import java.time.LocalDateTime;
 
@@ -86,4 +86,4 @@ public class OrderDetails{
 		this.orderStatus = orderStatus;
 	}
 
-} 
+} */

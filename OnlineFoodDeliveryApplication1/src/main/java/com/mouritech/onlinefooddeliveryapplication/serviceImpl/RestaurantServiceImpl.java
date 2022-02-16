@@ -103,10 +103,11 @@ RestaurantItemsMapper restaurantItemsMapper;
 	public ResponseEntity<?> insertItems(RestaurantItemsDto restaurantItemsDto) {
 		
 		 Restaurant checkEmailExisting = restaurantRepository.findByRestaurantEmail(restaurantItemsDto.getRestaurantEmail());
-		 checkEmailExisting.setItems(null);
+	/*	 checkEmailExisting.setItems(null);*/
 		 
 		 
 		 Restaurant checkpasswordExisting = restaurantRepository.findByRestaurantPassword(restaurantItemsDto.getRestaurantPassword());
+		if(checkEmailExisting != null)
 		 checkEmailExisting.setRestaurantId(checkpasswordExisting.getRestaurantId());
 		
 		 if(checkEmailExisting==null) {
