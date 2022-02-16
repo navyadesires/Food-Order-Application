@@ -1,12 +1,13 @@
-package com.mouritech.onlinefooddeliveryapplication.service;
+package com.mouritech.onlinefooddeliveryapplication.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.mouritech.onlinefooddeliveryapplication.repository.CustomerRepository;
 import com.mouritech.onlinefooddeliveryapplication.entity.Customer;
+import com.mouritech.onlinefooddeliveryapplication.repository.CustomerRepository;
+import com.mouritech.onlinefooddeliveryapplication.service.CustomerService;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {

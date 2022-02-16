@@ -6,11 +6,10 @@ import org.springframework.stereotype.Repository;
 import com.mouritech.onlinefooddeliveryapplication.entity.Customer;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long>{
-	
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
 	Customer findByCustomerEmailAndCustomerPassword(String customerEmail, String customerPassword);
 
 	Customer findByCustomerName(String customerName);
 
 }
-

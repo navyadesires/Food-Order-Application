@@ -1,4 +1,4 @@
-package com.mouritech.onlinefooddeliveryapplication.service;
+/* package com.mouritech.onlinefooddeliveryapplication.service;
 
 import java.util.List;
 
@@ -80,5 +80,5 @@ public class OrderService {
 	//void updateOrderStatus(Long sellerid, Long orderStatus);
 
 	//void deleteOrder(int orderid);
-}
+//}
 

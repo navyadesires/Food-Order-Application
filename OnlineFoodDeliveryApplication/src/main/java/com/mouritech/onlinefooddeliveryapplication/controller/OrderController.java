@@ -1,4 +1,4 @@
-package com.mouritech.onlinefooddeliveryapplication.control;
+package com.mouritech.onlinefooddeliveryapplication.controller;
 
 import java.util.List;
 

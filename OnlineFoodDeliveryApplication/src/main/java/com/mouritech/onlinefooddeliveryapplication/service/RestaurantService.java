@@ -1,4 +1,4 @@
-package com.mouritech.onlinefooddeliveryapplication.service;
+/*package com.mouritech.onlinefooddeliveryapplication.service;
 
 import org.springframework.http.ResponseEntity;
 
@@ -8,8 +8,8 @@ public interface RestaurantService {
 
 	void addRestaurantInformation(Restaurant restaurant);
 
-	boolean findRestaurantByNameAndPassword(String restaurantName, String restaurantPassword);
+	boolean findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword);
 
-	ResponseEntity<?> updaterestaurantinfobyname(Restaurant restaurant);
+	ResponseEntity<?> updaterestaurantinfobyemail(Restaurant restaurant);
 
-}
+}*/

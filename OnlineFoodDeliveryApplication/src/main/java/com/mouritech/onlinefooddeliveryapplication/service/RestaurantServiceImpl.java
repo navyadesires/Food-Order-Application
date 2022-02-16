@@ -1,4 +1,4 @@
-package com.mouritech.onlinefooddeliveryapplication.service;
+	/*package com.mouritech.onlinefooddeliveryapplication.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +21,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public boolean findRestaurantByNameAndPassword(String restaurantName, String restaurantPassword) {
+	public boolean findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword) {
 		boolean flag =false;
 		
-		Restaurant restaurant = restaurantRepository.findByRestaurantNameAndRestaurantPassword(restaurantName,restaurantPassword);
+		Restaurant restaurant = restaurantRepository.findByRestaurantEmailAndRestaurantPassword(restaurantEmail,restaurantPassword);
 		if(restaurant==null) {
 			return flag;
 		}
@@ -34,10 +34,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	}
 
-	@Override
-	public ResponseEntity<?> updaterestaurantinfobyname(Restaurant restaurant) {
+@Override
+	public ResponseEntity<?> updaterestaurantinfobyemail(Restaurant restaurant) {
 		
-		Restaurant rest = restaurantRepository.findByRestaurantName(restaurant.getRestaurantName());
+		//Restaurant rest = restaurantRepository.findByRestaurantEmail(restaurant.getRestaurantEmail());
 		if(rest==null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("resourse not you cant update");
 		}
@@ -58,4 +58,4 @@ public class RestaurantServiceImpl implements RestaurantService {
 			 return ResponseEntity.ok(restaurantfinal);
 		}
 }
-}
+}*/

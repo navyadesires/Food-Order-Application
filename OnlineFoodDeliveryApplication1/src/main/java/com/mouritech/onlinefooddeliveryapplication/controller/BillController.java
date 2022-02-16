@@ -1,4 +1,4 @@
-package com.mouritech.onlinefooddeliveryapplication.control;
+/*package com.mouritech.onlinefooddeliveryapplication.controller;
 
 import java.util.List;
 
@@ -17,12 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mouritech.onlinefooddeliveryapplication.entity.Bill;
-import com.mouritech.onlinefooddeliveryapplication.exception.ResourceNotFoundException;
 import com.mouritech.onlinefooddeliveryapplication.repository.BillRepository;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController 
-@RequestMapping("/api/v1")
+@RequestMapping("/bill")
 public class BillController {
 	
 	@Autowired
@@ -45,7 +44,7 @@ public class BillController {
 	//update bills
 	@PutMapping("/bills/{id}")
 	public ResponseEntity<Bill> updatebill(@PathVariable(value = "id") String billId,
-	         @Valid @RequestBody Bill billDetails) throws ResourceNotFoundException {
+	         @Valid @RequestBody Bill billDetails) throws BillNotFound {
 		Bill bill = billRepository.findById(billId)
 	        .orElseThrow(() -> new ResourceNotFoundException("Bill not found for this id :: " + billId));
 
@@ -74,10 +73,10 @@ public class BillController {
 	//get bill by billId
 	@GetMapping("/bills/{id}")
     public ResponseEntity<Bill> getBillById(@PathVariable(value = "id") String billId)
-        throws ResourceNotFoundException {
+        throws BillNotFound {
 		Bill bill = billRepository.findById(billId)
           .orElseThrow(() -> new ResourceNotFoundException("Customer not found for this id :: " + billId));
         return ResponseEntity.ok().body(bill);
     }
 	
-}
+}*/
