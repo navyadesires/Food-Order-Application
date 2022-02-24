@@ -1,21 +1,21 @@
 /*package com.mouritech.onlinefooddeliveryapplication.repository;
 
-import org.springframework.stereotype.Repository;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.mouritech.onlinefooddeliveryapplication.entity.OrderDetails;
+import org.springframework.stereotype.Repository;
+
+
+import com.mouritech.onlinefooddeliveryapplication.entity.Order;
 
 @Repository
-public interface OrderRepository extends JpaRepository<OrderDetails, Long> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
+
+
+
+	Optional<Order> findByOrderId(String orderId);
 	
-	OrderDetails findByRestaurantName(String restaurantName);
-
-	
-	OrderDetails findByRestaurantEmail(String restaurantEmail);
-
-	OrderDetails findByRestaurantPassword(String restaurantPassword);
-
 }*/
-
 
 
 

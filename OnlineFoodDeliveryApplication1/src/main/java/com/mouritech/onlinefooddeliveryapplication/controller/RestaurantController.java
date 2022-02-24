@@ -3,6 +3,7 @@ package com.mouritech.onlinefooddeliveryapplication.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.mouritech.onlinefooddeliveryapplication.dto.RestaurantItemsDto;
 import com.mouritech.onlinefooddeliveryapplication.entity.Restaurant;
 import com.mouritech.onlinefooddeliveryapplication.service.RestaurantService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/restaurant")
 public class RestaurantController {
@@ -32,8 +34,9 @@ public class RestaurantController {
 		
 		
 	}
+	/*@CrossOrigin(origins = "http://localhost:4200")*/
+	@GetMapping("/getrestaurantbyemailandpassword/{restaurantEmail}/{restaurantPassword}")
 	
-	@GetMapping("/getrestaurantbyemaiandpassword/{restaurantEmail}/{restaurantPassword}")
 	public ResponseEntity<?> findRestaurantByEmailAndPassword(@PathVariable(value = "restaurantEmail") String restaurantEmail,
 			@PathVariable(value ="restaurantPassword") String restaurantPassword){
 		
@@ -69,7 +72,7 @@ public ResponseEntity<?>checkRestauramtEmailAndPassword(@RequestBody RestaurantD
 	
 }
 
-@PostMapping("/insertitemsByrestaurantemaiandpassword")
+@PostMapping("/insertitemsByrestaurantemailandpassword")
 public ResponseEntity<?>insertItems(@RequestBody RestaurantItemsDto restaurantItemsDto){
 	
 	if(restaurantItemsDto==null) {

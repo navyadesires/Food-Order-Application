@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.mouritech.onlinefooddeliveryapplication.dto.RestaurantDto;
 import com.mouritech.onlinefooddeliveryapplication.dto.RestaurantItemsDto;
-import com.mouritech.onlinefooddeliveryapplication.entity.Items;
+import com.mouritech.onlinefooddeliveryapplication.entity.Item;
 import com.mouritech.onlinefooddeliveryapplication.entity.Restaurant;
 import com.mouritech.onlinefooddeliveryapplication.mapper.RestaurantItemsMapper;
 import com.mouritech.onlinefooddeliveryapplication.mapper.RestaurantMapper;
-import com.mouritech.onlinefooddeliveryapplication.repository.ItemsRepository;
+import com.mouritech.onlinefooddeliveryapplication.repository.ItemRepository;
 import com.mouritech.onlinefooddeliveryapplication.repository.RestaurantRepository;
 import com.mouritech.onlinefooddeliveryapplication.service.RestaurantService;
 
@@ -23,7 +23,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	private RestaurantRepository restaurantRepository;
 	
 	@Autowired
-	ItemsRepository itemsRepository;
+	ItemRepository itemsRepository;
 
 @Autowired
 RestaurantMapper restaurantMapper;
@@ -124,10 +124,10 @@ RestaurantItemsMapper restaurantItemsMapper;
 			 
 			 Restaurant restaurant = restaurantItemsMapper.convertDtoToEntity(restaurantItemsDto);
 			 
-			 checkEmailExisting.setItems(restaurant.getItems());
+			 checkEmailExisting.setItem(restaurant.getItem());
 			 
 		
-			 itemsRepository.saveAll(checkEmailExisting.getItems());
+			 itemsRepository.saveAll(checkEmailExisting.getItem());
 			 return ResponseEntity.ok().body("items inserted");
 		 }
 		

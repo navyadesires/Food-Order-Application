@@ -72,7 +72,7 @@ public class Restaurant {
 	private String restaurantManagerEmail;
 	
 	@OneToMany(mappedBy = "restaurant" ,cascade = CascadeType.ALL , fetch = FetchType.LAZY)
-	private List<Items> items;
+	private List<Item> item;
 
 	public Restaurant() {
 		super();
@@ -101,7 +101,7 @@ public class Restaurant {
 	public Restaurant(String restaurantName, String restaurantPassword, String restaurantEmail,
 			String restaurantAddress, String restaurantCity, String restaurantState, String restaurantcountry,
 			int restaurantPincode, String restaurantManagerFirstName, String restaurantManagerLastName,
-			String restaurantManagerNumber, String restaurantManagerEmail, List<Items> items) {
+			String restaurantManagerNumber, String restaurantManagerEmail, List<Item> item) {
 		super();
 		this.restaurantName = restaurantName;
 		this.restaurantPassword = restaurantPassword;
@@ -115,7 +115,7 @@ public class Restaurant {
 		this.restaurantManagerLastName = restaurantManagerLastName;
 		this.restaurantManagerNumber = restaurantManagerNumber;
 		this.restaurantManagerEmail = restaurantManagerEmail;
-		this.items = items;
+		this.item = item;
 	}
 
 	public long getRestaurantId() {
@@ -222,12 +222,12 @@ public class Restaurant {
 		this.restaurantManagerEmail = restaurantManagerEmail;
 	}
 
-	public List<Items> getItems() {
-		return items;
+	public List<Item> getItem() {
+		return item;
 	}
 
-	public void setItems(List<Items> items) {
-		this.items = items;
+	public void setItem(List<Item> item) {
+		this.item = item;
 	}
 
 

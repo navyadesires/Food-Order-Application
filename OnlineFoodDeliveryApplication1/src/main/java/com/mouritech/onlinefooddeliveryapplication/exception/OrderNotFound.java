@@ -1,10 +1,19 @@
-package com.mouritech.onlinefooddeliveryapplication.exception;
+/*package com.mouritech.onlinefooddeliveryapplication.exception;
 
-public class OrderNotFound extends Exception{
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-	private static final long serialVersionUID = 6169161480353483613L;
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class OrderNotFound extends RuntimeException {
 
-	public OrderNotFound(String message) {
-		super(message);
-	}
-}
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = 6169161480353483613L;
+
+//	public OrderNotFound(String msg) {
+		
+	//	super(msg);
+	//}
+//}*/
+
