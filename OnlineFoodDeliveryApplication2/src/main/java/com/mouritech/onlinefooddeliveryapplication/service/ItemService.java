@@ -9,7 +9,7 @@ import com.mouritech.onlinefooddeliveryapplication.exception.RestaurantNotFound;
 public interface ItemService {
 
 	Item addItems(Long restaurantId, Item item) throws RestaurantNotFound;
-
+	
 	Item addItems(Item items);
 
 	Item updateItems(Item items) throws RestaurantNotFound;
@@ -21,4 +21,9 @@ public interface ItemService {
 	List<Item> getAllItems();
 
 	Item findById(Long itemId) throws RestaurantNotFound;
+	
+	Item AddItemsByRestName(String restaurantName, Item items);
+
+
+
 }

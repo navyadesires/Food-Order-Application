@@ -65,19 +65,32 @@ RestaurantItemsMapper restaurantItemsMapper;
 		}
 }
 
+//	@Override
+//	public boolean findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword) {
+//		boolean flag =false;
+//		
+//		Restaurant restaurant = restaurantRepository.findByRestaurantEmailAndRestaurantPassword(restaurantEmail,restaurantPassword);
+//		if(restaurant==null) {
+//			return flag;
+//		}
+//		else {
+//			return flag=true;
+//		}
+//
+//	}
+	
 	@Override
-	public boolean findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword) {
-		boolean flag =false;
-		
-		Restaurant restaurant = restaurantRepository.findByRestaurantEmailAndRestaurantPassword(restaurantEmail,restaurantPassword);
-		if(restaurant==null) {
-			return flag;
-		}
-		else {
-			return flag=true;
-		}
+    public Restaurant findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword) {
 
-	}
+        Restaurant restaurant = restaurantRepository.findByRestaurantEmailAndRestaurantPassword(restaurantEmail,restaurantPassword);
+        if(restaurant==null) {
+            return null;
+        }
+        else {
+            return restaurant;
+        }
+ 
+    }
 
 	@Override
 	public ResponseEntity<?> checkRestauramtEmailAndPassword(RestaurantDto restaurantDto) {
@@ -152,6 +165,15 @@ RestaurantItemsMapper restaurantItemsMapper;
 		Restaurant restaurant = restaurantRepository.findById(restaurantId).orElseThrow(() -> new RestaurantNotFound(" restaurant not found"));
 		return restaurant;
 	}
+	
+
+/*	@Override
+	public Restaurant getByName(String restaurantName) throws RestaurantNotFound {
+		Restaurant restaurant = restaurantRepository.findByName(restaurantName).orElseThrow(() -> new RestaurantNotFound(" restaurant not found"));
+		return restaurant;
+	}*/
+	
+	
 
 	@Override
 	public Restaurant updateRestaurantById(Long restaurantId, Restaurant restaurant) throws RestaurantNotFound {
@@ -192,5 +214,15 @@ RestaurantItemsMapper restaurantItemsMapper;
 		
 		return oldrestaurant;
 	}
+	
+//	@Override
+//	public Restaurant AddItems(String restaurantName, Restaurant restaurant) throws RestaurantNotFound {
+//		
+//		Restaurant oldrestaurant = restaurantRepository.findByName(restaurantName).orElseThrow(() -> new RestaurantNotFound(" restaurant not found"));
+//		oldrestaurant.setItems(restaurant.getItems());
+//		restaurantRepository.save(oldrestaurant);
+//		
+//		return oldrestaurant;
+//	}
 
 }

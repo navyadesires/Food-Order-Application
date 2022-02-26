@@ -27,20 +27,34 @@ public class CustomerServiceImpl implements CustomerService {
 		
 	}
 
+//	@Override
+//	public boolean findCustomerByEmailAndPassword(String customerEmail, String customerPassword) {
+//		boolean flag =false;
+//		
+//		Customer customer = customerRepository.findByCustomerEmailAndCustomerPassword(customerEmail,customerPassword);
+//		if(customer==null) {
+//			return flag;
+//		}
+//		else {
+//			return flag=true;
+//		}
+//
+//	}
+
+	
 	@Override
-	public boolean findCustomerByEmailAndPassword(String customerEmail, String customerPassword) {
-		boolean flag =false;
-		
-		Customer customer = customerRepository.findByCustomerEmailAndCustomerPassword(customerEmail,customerPassword);
-		if(customer==null) {
-			return flag;
-		}
-		else {
-			return flag=true;
-		}
+    public Customer findCustomerByEmailAndPassword(String customerEmail, String customerPassword) {
 
-	}
-
+		Customer  customer = customerRepository.findByCustomerEmailAndCustomerPassword(customerEmail,customerPassword);
+        if(customer==null) {
+            return null;
+        }
+        else {
+            return customer;
+        }
+ 
+    }
+	
 	@Override
 	public ResponseEntity<?> updatecustomerinfobyname(Customer customer) {
 		
@@ -65,6 +79,13 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 }
 
+	@Override
+	public Customer addCustomer(Customer customer) {
+		
+		return customerRepository.save(customer);
+	}
+
+	
 	@Override
 	public Customer deleteCustomer(Long customerId) throws CustomerNotFound {
 		

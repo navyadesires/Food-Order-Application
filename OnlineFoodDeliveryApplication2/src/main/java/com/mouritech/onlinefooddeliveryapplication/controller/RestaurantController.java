@@ -46,21 +46,41 @@ public class RestaurantController {
 		
 	}
 	
-	@GetMapping("/getrestaurantbyemaiandpassword/{restaurantEmail}/{restaurantPassword}")
-	public ResponseEntity<?> findRestaurantByEmailAndPassword(@PathVariable(value = "restaurantEmail") String restaurantEmail,
-			@PathVariable(value ="restaurantPassword") String restaurantPassword){
-		
-		boolean result = restaurantService.findRestaurantByEmailAndPassword(restaurantEmail,restaurantPassword);
-		if(result==true) {
-			return ResponseEntity.ok().body("login successful");
-		}
-	
-		else {
-			 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("resourse not found please sign in first");
-			
-		}
-		
-	}
+//	@GetMapping("/getrestaurantbyemaiandpassword/{restaurantEmail}/{restaurantPassword}")
+//	public ResponseEntity<?> findRestaurantByEmailAndPassword(@PathVariable(value = "restaurantEmail") String restaurantEmail,
+//			@PathVariable(value ="restaurantPassword") String restaurantPassword){
+//		
+//		boolean result = restaurantService.findRestaurantByEmailAndPassword(restaurantEmail,restaurantPassword);
+//		if(result==true) {
+//			return ResponseEntity.ok().body("login successful");
+//		}
+//	
+//		else {
+//			 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("resourse not found please sign in first");
+//			
+//		}
+//		
+//	}
+    @GetMapping("/getrestaurantbyemaiandpassword/{restaurantEmail}/{restaurantPassword}")
+    public ResponseEntity<?> findRestaurantByEmailAndPassword(@PathVariable(value = "restaurantEmail") String restaurantEmail,
+            @PathVariable(value ="restaurantPassword") String restaurantPassword){
+
+        Restaurant result = restaurantService.findRestaurantByEmailAndPassword(restaurantEmail,restaurantPassword);
+        if(result!=null) {
+        	  return ResponseEntity.ok().body("login successful and "+"Restaurant name is =="+result.getRestaurantName());
+        	
+         //   return ResponseEntity.ok().body({ mesage:"login successful",
+          //       username: result.getRestaurantName();
+          //  });
+            
+        }
+
+        else {
+             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("resourse not found please sign in first");
+
+        }
+
+    }
 	@PutMapping("/updaterestaurantinfobyname")
 	public ResponseEntity<?>updaterestaurantinfobyname(@RequestBody Restaurant restaurant){
 		
@@ -133,5 +153,10 @@ public Restaurant deleteRestaurant(@PathVariable(value = "restaurantId") Long re
 public Item addItems(@PathVariable Long restaurantId,@RequestBody Item item) throws RestaurantNotFound {
 	return itemService.addItems(restaurantId,item);
 }
+
+//@PostMapping("/addItems/{restaurantName}")
+//public Item addItems(@PathVariable String restaurantName,@RequestBody Item item) throws RestaurantNotFound {
+//	return itemService.addItems(restaurantName,item);
+//}
 
 }

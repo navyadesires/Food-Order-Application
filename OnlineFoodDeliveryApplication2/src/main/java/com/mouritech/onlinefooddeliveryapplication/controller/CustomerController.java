@@ -40,28 +40,54 @@ public class CustomerController {
 		
 	}
 	
-	@GetMapping("/getcustomerbyemailandpassword/{customerEmail}/{customerPassword}")
-	public ResponseEntity<?> findCustomerByEmailAndPassword(@PathVariable(value = "customerEmail") String customerEmail,
-			@PathVariable(value ="customerPassword") String customerPassword){
-		
-		boolean result = customerService.findCustomerByEmailAndPassword(customerEmail,customerPassword);
-		if(result==true) {
-			return ResponseEntity.ok().body("login successful");
-		}
+//	@GetMapping("/getcustomerbyemailandpassword/{customerEmail}/{customerPassword}")
+//	public ResponseEntity<?> findCustomerByEmailAndPassword(@PathVariable(value = "customerEmail") String customerEmail,
+//			@PathVariable(value ="customerPassword") String customerPassword){
+//		
+//		boolean result = customerService.findCustomerByEmailAndPassword(customerEmail,customerPassword);
+//		if(result==true) {
+//			return ResponseEntity.ok().body("login successful");
+//			
+//		}
+//	
+//		else {
+//			 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("resourse not found please sign in first");
+//			
+//		}
+//		
+//	}
 	
-		else {
-			 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("resourse not found please sign in first");
-			
-		}
-		
-	}
-	
+	 @GetMapping("/getcustomerbyemailandpassword/{customerEmail}/{customerPassword}")
+	    public ResponseEntity<?> findCustomerByEmailAndPassword(@PathVariable(value = "customerEmail") String customerEmail,
+	            @PathVariable(value ="customerPassword") String customerPassword){
+
+		 Customer result = customerService.findCustomerByEmailAndPassword(customerEmail,customerPassword);
+	        if(result!=null) {
+	        	  return ResponseEntity.ok().body("login successful and"+"Customer name is =="+result.getCustomerName());
+	            
+	        }
+
+	        else {
+	             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("resourse not found please sign in first");
+
+	        }
+
+	    }
 	
 	@PutMapping("/updatecustomerinfobyname")
 	public ResponseEntity<?>updatecustomerinfobyname(@RequestBody Customer customer){
 		
 		ResponseEntity<?> result = customerService.updatecustomerinfobyname(customer);
 		return result;
+	}
+	
+	//Adding  restaurant details using entity class
+	@PostMapping("/add")
+	public  Customer addCustomer(@RequestBody Customer customer) {
+		
+		Customer newCustomer = customerService.addCustomer(customer);
+		
+		return newCustomer;
 	}
 	
 	@GetMapping("/getAll")

@@ -73,5 +73,14 @@ public class ItemServiceImpl implements ItemService {
 		Item existingItems = itemsRepository.findById(itemId).orElseThrow(() -> new RestaurantNotFound(" restaurant Not found"));
 		return existingItems;
 	}
+	
+
+	@Override
+	public Item AddItemsByRestName(String restaurantName, Item items) {
+		Restaurant restaurant = restaurantRepository.findByRestaurantName(restaurantName);
+		items.setRestaurant(restaurant);
+		Item finalItems = itemsRepository.save(items);
+		return finalItems;
+	}
 
 }

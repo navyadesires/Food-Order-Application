@@ -1,5 +1,7 @@
 package com.mouritech.onlinefooddeliveryapplication.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +17,9 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 	Restaurant findByRestaurantEmail(String restaurantEmail);
 
 	Restaurant findByRestaurantPassword(String restaurantPassword);
+
+	//Optional<Restaurant> findByName(String restaurantName);
+
+	//Optional<Restaurant> findByName(String restaurantName);
 
 }

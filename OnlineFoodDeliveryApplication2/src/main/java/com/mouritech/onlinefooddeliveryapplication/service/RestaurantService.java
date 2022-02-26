@@ -15,7 +15,7 @@ public interface RestaurantService {
 
 	ResponseEntity<?> updaterestaurantinfobyname(Restaurant restaurant);
 
-	boolean findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword);
+	Restaurant findRestaurantByEmailAndPassword(String restaurantEmail, String restaurantPassword);
 
 	ResponseEntity<?> checkRestauramtEmailAndPassword(RestaurantDto restaurantDto);
 
@@ -26,11 +26,15 @@ public interface RestaurantService {
 	List<Restaurant> getAllRestaurant();
 
 	Restaurant getById(Long restaurantId) throws RestaurantNotFound;
+	
+	//Restaurant getByName(String restaurantId) throws RestaurantNotFound;
+
 
 	Restaurant updateRestaurantById(Long restaurantId, Restaurant restaurant) throws RestaurantNotFound;
 
 	Restaurant deleteRestaurant(Long restaurantId) throws RestaurantNotFound;
 
 	Restaurant AddItems(Long restaurantId, Restaurant restaurant) throws RestaurantNotFound;
+	//	Restaurant AddItems(String restaurantName, Restaurant restaurant) throws RestaurantNotFound;
 
 }
