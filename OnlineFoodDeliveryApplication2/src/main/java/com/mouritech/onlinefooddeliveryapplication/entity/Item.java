@@ -42,7 +42,8 @@ public class Item {
 
 	private Long itemQuantity;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	//@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "restaurant_id")
 	@JsonIgnore
 	private Restaurant restaurant;

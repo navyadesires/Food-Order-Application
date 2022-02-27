@@ -13,6 +13,8 @@ import com.mouritech.onlinefooddeliveryapplication.entity.Item;
 @Repository
 public interface ItemsRepository extends JpaRepository<Item, Long>{
 
+//	Item findByItemName(String itemName);
+	Item findByItemId(Long itemId);
 	//public Item addItem(Item item) ;
 //	public Item updateItem(Item item) ;
 	//public Item viewItem(Item item) ;

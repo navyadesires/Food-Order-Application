@@ -37,4 +37,9 @@ public interface RestaurantService {
 	Restaurant AddItems(Long restaurantId, Restaurant restaurant) throws RestaurantNotFound;
 	//	Restaurant AddItems(String restaurantName, Restaurant restaurant) throws RestaurantNotFound;
 
+	ResponseEntity<Restaurant> getrestaurantInfoAndItems(String restaurantName);
+
+	//ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, String itemName);
+	ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, Long itemId);
+
 }

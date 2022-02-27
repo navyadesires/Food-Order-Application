@@ -63,11 +63,27 @@ public class ItemServiceImpl implements ItemService {
 		return existingItems;
 	}
 
+//	@Override
+//	public Item deleteByName(String itemName) throws RestaurantNotFound {
+//		Item existingItems = itemsRepository.findByName(itemName).orElseThrow(() -> new RestaurantNotFound(" restaurant Not found"));
+//		itemsRepository.delete(existingItems);
+//		return existingItems;
+//	}
+	
+	   //@Service("itemService")
+
 	@Override
 	public List<Item> getAllItems() {
 		return itemsRepository.findAll();
 	}
 
+	 public List<Item> getItemsByRestaurantName(String restaurantName) {
+		 
+	        Restaurant restaurant = restaurantRepository.findByRestaurantName(restaurantName);
+	 
+	        List<Item> items = restaurant.getItems();
+	        return items;
+	    }
 	@Override
 	public Item findById(Long itemId) throws RestaurantNotFound {
 		Item existingItems = itemsRepository.findById(itemId).orElseThrow(() -> new RestaurantNotFound(" restaurant Not found"));
@@ -81,6 +97,44 @@ public class ItemServiceImpl implements ItemService {
 		items.setRestaurant(restaurant);
 		Item finalItems = itemsRepository.save(items);
 		return finalItems;
+	}
+	
+
+//	@Override
+//	public Item deleteItemsByRestName(String restaurantName, Item items) {
+//		Restaurant restaurant = restaurantRepository.findByRestaurantName(restaurantName);
+//		items.setRestaurant(restaurant);
+//		Item finalItems = itemsRepository.save(items);
+//		return finalItems;
+//	}
+
+//	@Override
+//	public Item deleteByName(String itemName) throws RestaurantNotFound {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	@Override
+	public Item deleteByName(Long itemId) throws RestaurantNotFound {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//	@Override
+//	public Item findByName(String itemName) throws RestaurantNotFound {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+	@Override
+	public Item findByItemId(Long itemId) throws RestaurantNotFound {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Item findByName(String itemName) throws RestaurantNotFound {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -17,13 +17,23 @@ public interface ItemService {
 	Item updateById(Item items, Long itemId) throws RestaurantNotFound;
 
 	Item deleteById(Long itemId) throws RestaurantNotFound;
+	
+	//Item deleteByName(String itemName) throws RestaurantNotFound;
 
 	List<Item> getAllItems();
 
 	Item findById(Long itemId) throws RestaurantNotFound;
-	
+	Item findByName(String itemName) throws RestaurantNotFound;
+
+		
 	Item AddItemsByRestName(String restaurantName, Item items);
 
+//	Item deleteItemsByRestName(String restaurantName, Item items);
 
+	List<Item> getItemsByRestaurantName(String restaurantName);
+
+	Item deleteByName(Long itemId) throws RestaurantNotFound;
+
+	Item findByItemId(Long itemId) throws RestaurantNotFound;
 
 }

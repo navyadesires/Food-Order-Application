@@ -71,7 +71,8 @@ public class Restaurant {
 	@Column(name = "restaurant_manager_email_id")
 	private String restaurantManagerEmail;
 	
-	@OneToMany(mappedBy = "restaurant" ,cascade = CascadeType.ALL)
+	//@OneToMany(mappedBy = "restaurant" ,cascade = CascadeType.ALL)
+	 @OneToMany(mappedBy = "restaurant" , orphanRemoval = true, cascade = CascadeType.REMOVE , fetch = FetchType.LAZY)
 	private List<Item> item;
 
 	public Restaurant() {

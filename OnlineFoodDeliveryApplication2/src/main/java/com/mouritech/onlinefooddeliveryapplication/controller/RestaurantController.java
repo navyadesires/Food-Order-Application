@@ -159,4 +159,15 @@ public Item addItems(@PathVariable Long restaurantId,@RequestBody Item item) thr
 //	return itemService.addItems(restaurantName,item);
 //}
 
+@GetMapping("/getRestaurantandItems/{restaurantName}")
+public ResponseEntity<Restaurant> getrestaurantInfoAndItems(@PathVariable(value = "restaurantName") String restaurantName){
+    return restaurantService.getrestaurantInfoAndItems(restaurantName);
+
+}
+
+@DeleteMapping("/deleteItems/{restaurantName}/{itemId}")
+public ResponseEntity<Restaurant>deleteByItemsusingRestaurantName(@PathVariable(value = "restaurantName") String restaurantName,@PathVariable(value = "itemId") Long itemId){
+
+    return restaurantService.deleteByItemsusingRestaurantName(restaurantName,itemId);
+}
 }

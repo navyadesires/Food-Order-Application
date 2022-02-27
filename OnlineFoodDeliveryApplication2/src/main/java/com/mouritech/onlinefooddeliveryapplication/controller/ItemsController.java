@@ -3,6 +3,8 @@ package com.mouritech.onlinefooddeliveryapplication.controller;
 
 import java.util.List;
 
+//import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +24,7 @@ import com.mouritech.onlinefooddeliveryapplication.service.ItemService;
 @RestController
 @RequestMapping("/items")
 public class ItemsController {
+	//@Resource(name = "itemService")
 	@Autowired
 	private ItemService itemService;
 	
@@ -52,10 +55,26 @@ public class ItemsController {
 		return itemService.deleteById(itemId);
 	}
 	
+//	@DeleteMapping("/deleteByName/{itemName}")
+//	public Item deleteByName(@PathVariable(value = "itemName") String itemName) throws RestaurantNotFound {
+//		return itemService.deleteByName(itemName);
+//	}
+	
 	@GetMapping("/getAll")
 	public List<Item> getAll(){
 		return itemService.getAllItems();
 	}
+	
+//	@GetMapping("/getAll/{restaurantName}")
+//	public List<Item> getAll(){
+//		return itemService.getAllItems();
+//	}
+	
+	@GetMapping("/getItems/{restaurantName}")
+    public List<Item> getItemsByRestaurantName(@PathVariable(value = "restaurantName") String restaurantName){
+
+        return itemService.getItemsByRestaurantName(restaurantName);
+    }
 	
 	@GetMapping("/getByItemId/{itemId}")
 	public Item getById(@PathVariable(value = "itemId") Long itemId) throws RestaurantNotFound{
@@ -66,4 +85,9 @@ public class ItemsController {
 	public Item AddItemsByRestName(@PathVariable(value = "restaurantName") String restaurantName,@RequestBody Item items) {
 		return itemService.AddItemsByRestName(restaurantName,items);
 	}
+	
+//	@DeleteMapping("deleteItems/{restaurantName}")
+//	public Item deleteItemsByRestName(@PathVariable(value = "restaurantName") String restaurantName,@RequestBody Item items) {
+//		return itemService.deleteItemsByRestName(restaurantName,items);
+//	}
 }

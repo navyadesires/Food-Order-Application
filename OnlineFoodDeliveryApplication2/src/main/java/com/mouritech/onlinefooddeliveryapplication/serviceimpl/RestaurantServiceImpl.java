@@ -2,6 +2,8 @@ package com.mouritech.onlinefooddeliveryapplication.serviceimpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -215,6 +217,17 @@ RestaurantItemsMapper restaurantItemsMapper;
 		return oldrestaurant;
 	}
 	
+
+	    @Override
+		@Transactional	
+	    public ResponseEntity<Restaurant> getrestaurantInfoAndItems(String restaurantName) {
+	 
+	        Restaurant restaurant = restaurantRepository.findByRestaurantName(restaurantName);
+	         return ResponseEntity.ok(restaurant);
+	 
+
+	    }
+	
 //	@Override
 //	public Restaurant AddItems(String restaurantName, Restaurant restaurant) throws RestaurantNotFound {
 //		
@@ -224,5 +237,18 @@ RestaurantItemsMapper restaurantItemsMapper;
 //		
 //		return oldrestaurant;
 //	}
+	 
+	 
+	    @Override
+	    @Transactional
+	    public ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, Long itemId) {
+	 
+	        Item items = itemsRepository.findByItemId(itemId);
+	        itemsRepository.delete(items);
+	 
+	        
+
+	        return getrestaurantInfoAndItems(restaurantName);
+	    }
 
 }
