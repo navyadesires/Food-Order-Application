@@ -32,8 +32,8 @@ public interface ItemService {
 
 	List<Item> getItemsByRestaurantName(String restaurantName);
 
-	Item deleteByName(Long itemId) throws RestaurantNotFound;
+	//Item deleteByName(Long itemId) throws RestaurantNotFound;
 
-	Item findByItemId(Long itemId) throws RestaurantNotFound;
+//	Item findByItemId(Long itemId) throws RestaurantNotFound;
 
 }

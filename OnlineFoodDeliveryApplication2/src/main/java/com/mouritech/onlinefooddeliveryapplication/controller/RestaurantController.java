@@ -165,9 +165,9 @@ public ResponseEntity<Restaurant> getrestaurantInfoAndItems(@PathVariable(value 
 
 }
 
-@DeleteMapping("/deleteItems/{restaurantName}/{itemId}")
-public ResponseEntity<Restaurant>deleteByItemsusingRestaurantName(@PathVariable(value = "restaurantName") String restaurantName,@PathVariable(value = "itemId") Long itemId){
-
-    return restaurantService.deleteByItemsusingRestaurantName(restaurantName,itemId);
-}
+//@DeleteMapping("/deleteItems/{restaurantName}/{itemId}")
+//public ResponseEntity<Restaurant>deleteByItemsusingRestaurantName(@PathVariable(value = "restaurantName") String restaurantName,@PathVariable(value = "itemId") Long itemId){
+//
+//    return restaurantService.deleteByItemsusingRestaurantName(restaurantName,itemId);
+//}
 }

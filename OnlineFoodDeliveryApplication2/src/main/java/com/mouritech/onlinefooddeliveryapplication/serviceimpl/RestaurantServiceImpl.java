@@ -238,17 +238,17 @@ RestaurantItemsMapper restaurantItemsMapper;
 //		return oldrestaurant;
 //	}
 	 
-	 
-	    @Override
-	    @Transactional
-	    public ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, Long itemId) {
-	 
-	        Item items = itemsRepository.findByItemId(itemId);
-	        itemsRepository.delete(items);
-	 
-	        
-
-	        return getrestaurantInfoAndItems(restaurantName);
-	    }
+//	 
+//	    @Override
+//	    @Transactional
+//	    public ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, Long itemId) {
+//	 
+//	        Item items = itemsRepository.findByItemId(itemId);
+//	        itemsRepository.delete(items);
+//	 
+//	        
+//
+//	        return getrestaurantInfoAndItems(restaurantName);
+//	    }
 
 }

@@ -114,22 +114,23 @@ public class ItemServiceImpl implements ItemService {
 //		return null;
 //	}
 
-	@Override
-	public Item deleteByName(Long itemId) throws RestaurantNotFound {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Item deleteByName(Long itemId) throws RestaurantNotFound {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 //	@Override
 //	public Item findByName(String itemName) throws RestaurantNotFound {
 //		// TODO Auto-generated method stub
 //		return null;
 //	}
-	@Override
-	public Item findByItemId(Long itemId) throws RestaurantNotFound {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+//	@Override
+//	public Item findByItemId(Long itemId) throws RestaurantNotFound {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public Item findByName(String itemName) throws RestaurantNotFound {
