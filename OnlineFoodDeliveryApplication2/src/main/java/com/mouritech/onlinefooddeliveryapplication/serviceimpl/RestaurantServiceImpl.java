@@ -250,5 +250,36 @@ RestaurantItemsMapper restaurantItemsMapper;
 //
 //	        return getrestaurantInfoAndItems(restaurantName);
 //	    }
+	    
+	    @Override
+		public ResponseEntity<Restaurant> updateByItemsusingRestaurantName(String restaurantName, String itemName,
+				Item items) throws RestaurantNotFound {
+			
+			Restaurant restaurant = restaurantRepository.findByRestaurantName(restaurantName);
+
+			List<Item> itemsList= restaurant.getItems();
+			for (Item result : itemsList) {
+				if(result.getItemName().equals(itemName)) {
+					long existingItemId = result.getItemId();
+					Item existingitems = itemsRepository.findById(existingItemId).orElseThrow(() -> new RestaurantNotFound("restaurant not found"));
+					existingitems.setItemName(items.getItemName());
+					existingitems.setItemPrice(items.getItemPrice());
+					existingitems.setItemDescription(items.getItemDescription());
+					existingitems.setItemQuantity(items.getItemQuantity());
+					
+					itemsRepository.save(existingitems);
+					
+					return getrestaurantInfoAndItems(restaurantName);
+				
+				}
+				
+				else {
+					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}
+				
+			}
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	    
 
 }

@@ -1,8 +1,10 @@
-package com.mouritech.onlinefooddeliveryapplication.controller;
+package com.mouritech.onlinefoodorderapplication.controller;
 
+import java.security.PublicKey;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,23 +15,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mouritech.onlinefooddeliveryapplication.dto.ItemDto;
-import com.mouritech.onlinefooddeliveryapplication.dto.RestaurantDto;
-import com.mouritech.onlinefooddeliveryapplication.dto.RestaurantItemsDto;
-import com.mouritech.onlinefooddeliveryapplication.entity.Item;
-import com.mouritech.onlinefooddeliveryapplication.entity.Restaurant;
-import com.mouritech.onlinefooddeliveryapplication.exception.RestaurantNotFound;
-import com.mouritech.onlinefooddeliveryapplication.service.ItemService;
-import com.mouritech.onlinefooddeliveryapplication.service.RestaurantService;
+import com.mouritech.onlinefoodorderapplication.dto.ItemDto;
+import com.mouritech.onlinefoodorderapplication.dto.RestaurantItemsDto;
+import com.mouritech.onlinefoodorderapplication.dto.RestaurantvarificationDto;
+import com.mouritech.onlinefoodorderapplication.entity.Items;
+import com.mouritech.onlinefoodorderapplication.entity.Restaurant;
+import com.mouritech.onlinefoodorderapplication.exception.ResourceNotFoundException;
+import com.mouritech.onlinefoodorderapplication.service.ItemService;
+import com.mouritech.onlinefoodorderapplication.service.RestaurantService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/restaurant")
 public class RestaurantController {
-	
-	
 	@Autowired
 	private RestaurantService restaurantService;
 	
@@ -50,9 +51,9 @@ public class RestaurantController {
 //	public ResponseEntity<?> findRestaurantByEmailAndPassword(@PathVariable(value = "restaurantEmail") String restaurantEmail,
 //			@PathVariable(value ="restaurantPassword") String restaurantPassword){
 //		
-//		boolean result = restaurantService.findRestaurantByEmailAndPassword(restaurantEmail,restaurantPassword);
-//		if(result==true) {
-//			return ResponseEntity.ok().body("login successful");
+//		Restaurant result = restaurantService.findRestaurantByEmailAndPassword(restaurantEmail,restaurantPassword);
+//		if(result!=null) {
+//			return ResponseEntity.ok().body(result.getRestaurantName());
 //		}
 //	
 //		else {
@@ -61,7 +62,8 @@ public class RestaurantController {
 //		}
 //		
 //	}
-    @GetMapping("/getrestaurantbyemaiandpassword/{restaurantEmail}/{restaurantPassword}")
+	
+	@GetMapping("/getrestaurantbyemaiandpassword/{restaurantEmail}/{restaurantPassword}")
     public ResponseEntity<?> findRestaurantByEmailAndPassword(@PathVariable(value = "restaurantEmail") String restaurantEmail,
             @PathVariable(value ="restaurantPassword") String restaurantPassword){
 
@@ -81,6 +83,7 @@ public class RestaurantController {
         }
 
     }
+	
 	@PutMapping("/updaterestaurantinfobyname")
 	public ResponseEntity<?>updaterestaurantinfobyname(@RequestBody Restaurant restaurant){
 		
@@ -89,7 +92,7 @@ public class RestaurantController {
 	}
 	
 @GetMapping("/getrestaurantbyemailandpasswordcheck")
-public ResponseEntity<?>checkRestauramtEmailAndPassword(@RequestBody RestaurantDto restaurantDto){
+public ResponseEntity<?>checkRestauramtEmailAndPassword(@RequestBody RestaurantvarificationDto restaurantDto){
 	if(restaurantDto==null) {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("please Enter Email and password");
 	}
@@ -133,47 +136,49 @@ public List<Restaurant> getAllRestaurant(){
 }
 
 @GetMapping("/getByRestaurantId/{restaurantId}")
-public Restaurant getRestaurantById(@PathVariable(value = "restaurantId") Long restaurantId) throws RestaurantNotFound {
+public Restaurant getRestaurantById(@PathVariable(value = "restaurantId") Long restaurantId) throws ResourceNotFoundException {
 	
 	return restaurantService.getById(restaurantId);
 }
 
 @PutMapping("/updateRestaurant/{restaurantId}")
-public Restaurant updateRestaurantById(@PathVariable(value = "restaurantId") Long restaurantId,@RequestBody Restaurant restaurant) throws RestaurantNotFound {
+public Restaurant updateRestaurantById(@PathVariable(value = "restaurantId") Long restaurantId,@RequestBody Restaurant restaurant) throws ResourceNotFoundException {
 	
 	return restaurantService.updateRestaurantById(restaurantId,restaurant);
 }
 
-@DeleteMapping("/deleteRestaurant/{restaurantId}")
-public Restaurant deleteRestaurant(@PathVariable(value = "restaurantId") Long restaurantId) throws RestaurantNotFound {
+@DeleteMapping("/delateRestaurant/{restaurantId}")
+public Restaurant deleteRestaurant(@PathVariable(value = "restaurantId") Long restaurantId) throws ResourceNotFoundException {
 	return restaurantService.deleteRestaurant(restaurantId);
 }
 
 @PostMapping("/addItems/{restaurantId}")
-public Item addItems(@PathVariable Long restaurantId,@RequestBody Item item) throws RestaurantNotFound {
-	return itemService.addItems(restaurantId,item);
+public Items addItems(@PathVariable(value = "restaurantId") Long restaurantId,@RequestBody Items items) throws ResourceNotFoundException {
+	return itemService.addItems(restaurantId,items);
 }
-
-//@PostMapping("/addItems/{restaurantName}")
-//public Item addItems(@PathVariable String restaurantName,@RequestBody Item item) throws RestaurantNotFound {
-//	return itemService.addItems(restaurantName,item);
-//}
 
 @GetMapping("/getRestaurantandItems/{restaurantName}")
 public ResponseEntity<Restaurant> getrestaurantInfoAndItems(@PathVariable(value = "restaurantName") String restaurantName){
-    return restaurantService.getrestaurantInfoAndItems(restaurantName);
-
+	return restaurantService.getrestaurantInfoAndItems(restaurantName);
+	
 }
 
-//@DeleteMapping("/deleteItems/{restaurantName}/{itemId}")
-//public ResponseEntity<Restaurant>deleteByItemsusingRestaurantName(@PathVariable(value = "restaurantName") String restaurantName,@PathVariable(value = "itemId") Long itemId){
-//
-//    return restaurantService.deleteByItemsusingRestaurantName(restaurantName,itemId);
-//}
+@DeleteMapping("/deleteItems/{restaurantName}/{itemName}")
+public ResponseEntity<Restaurant>deleteByItemsusingRestaurantName(@PathVariable(value = "restaurantName") String restaurantName,@PathVariable(value = "itemName") String itemName) throws ResourceNotFoundException{
+	
+	return restaurantService.deleteByItemsusingRestaurantName(restaurantName,itemName);
+}
+
 @PutMapping("updateItems/{restaurantName}/{itemName}")
-public ResponseEntity<Restaurant>updateByItemsusingRestaurantName(@PathVariable(value = "restaurantName") String restaurantName,@PathVariable(value = "itemName") String itemName,@RequestBody Item items) throws RestaurantNotFound{
+public ResponseEntity<Restaurant>updateByItemsusingRestaurantName(@PathVariable(value = "restaurantName") String restaurantName,@PathVariable(value = "itemName") String itemName,@RequestBody Items items) throws ResourceNotFoundException{
 
 	
 	return restaurantService.updateByItemsusingRestaurantName(restaurantName,itemName,items);
 }
+@GetMapping("/getrestaurantAndItemsByCity/{restaurantCity}")
+public List<Restaurant> getbyCity(@PathVariable(value = "restaurantCity") String restaurantCity){
+
+	return restaurantService.getAllByCity(restaurantCity);
+}
+
 }

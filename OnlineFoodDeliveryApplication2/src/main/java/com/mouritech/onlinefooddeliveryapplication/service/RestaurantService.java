@@ -6,8 +6,10 @@ import org.springframework.http.ResponseEntity;
 
 import com.mouritech.onlinefooddeliveryapplication.dto.RestaurantDto;
 import com.mouritech.onlinefooddeliveryapplication.dto.RestaurantItemsDto;
+import com.mouritech.onlinefooddeliveryapplication.entity.Item;
 import com.mouritech.onlinefooddeliveryapplication.entity.Restaurant;
 import com.mouritech.onlinefooddeliveryapplication.exception.RestaurantNotFound;
+
 
 public interface RestaurantService {
 
@@ -41,5 +43,6 @@ public interface RestaurantService {
 
 	//ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, String itemName);
 //	ResponseEntity<Restaurant> deleteByItemsusingRestaurantName(String restaurantName, Long itemId);
+	ResponseEntity<Restaurant> updateByItemsusingRestaurantName(String restaurantName, String itemName, Item items) throws RestaurantNotFound;
 
 }
